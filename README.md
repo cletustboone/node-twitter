@@ -1,6 +1,8 @@
 Twitter API client library for node.js
 ======================================
 
+This is a fork of jdub's node-twitter library that adds one minor feature: notifying of a connection stall when connected to the streaming API. As recommended by [Twitter's docs](https://dev.twitter.com/docs/streaming-apis/connecting#Stalls), we check every 90 seconds to see if we've received any data from the stream during that time.  If so, things are good, but if nothing has been received from Twitter in over 90 seconds, a 'stall' event is emitted.  You can use that to do with what you wish.
+
 [node-twitter](https://github.com/jdub/node-twitter) aims to provide a complete, asynchronous client library for the Twitter API, including the REST, search and streaming endpoints. It was inspired by, and uses some code from, [@technoweenie](https://github.com/technoweenie)'s [twitter-node](https://github.com/technoweenie/twitter-node).
 
 ## Requirements
@@ -72,6 +74,16 @@ node-twitter also supports user and site streams:
 		});
 		// Disconnect stream after five seconds
 		setTimeout(stream.destroy, 5000);
+	});
+
+### Listening for connection stalls
+
+While monitoring the twitter stream, you can listen for stall events.
+
+	stream.on('stall',function(elapsed){
+		stream.destroy();
+		console.log("Haven't heard anything from the stream in " + Math.round(elapsed/1000).toString() + " seconds");
+		// Do something to handle this.
 	});
 
 ## Contributors
