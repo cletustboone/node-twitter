@@ -6,11 +6,11 @@
 , "author": "jdub"
 , "licenses":
   [ { "type": "MIT"
-    , "url": "http://github.com/jdub/node-twitter/raw/master/LICENSE"
+    , "url": "http://github.com/cletustboone/node-twitter/raw/master/LICENSE"
   } ]
 , "repository":
   { "type": "git"
-  , "url": "http://github.com/jdub/node-twitter.git"
+  , "url": "http://github.com/cletustboone/node-twitter.git"
   }
 , "dependencies":
   { "oauth": ">=0.8.4"
